@@ -22,7 +22,7 @@
             <TableColumn fx:id="payrateCol" prefWidth="182.0" text="Pay Rate" />
         </columns>
       </TableView>
-      <Button layoutX="414.0" layoutY="115.0" mnemonicParsing="false" onAction="#changeSceneButton" prefHeight="67.0" prefWidth="149.0" text="Employee Screen" />
+      <Button layoutX="414.0" layoutY="115.0" mnemonicParsing="false" onAction="#changeSceneButton" prefHeight="67.0" prefWidth="149.0" text="Employee Details" />
       <Button layoutX="32.0" layoutY="505.0" mnemonicParsing="false" onAction="#addEmployeeButton" prefHeight="27.0" prefWidth="90.0" text="Add" />
       <Button layoutX="203.0" layoutY="505.0" mnemonicParsing="false" onAction="#removeEmployeeButton" prefHeight="27.0" prefWidth="90.0" text="Delete" />
       <TextField fx:id="first" layoutX="130.0" layoutY="361.0" />
@@ -35,7 +35,7 @@
       <Label layoutX="391.0" layoutY="400.0" text="Tax Rate:" />
       <TextField fx:id="taxInfo" layoutX="466.0" layoutY="395.0" prefHeight="27.0" prefWidth="114.0" />
       <Button layoutX="514.0" layoutY="430.0" mnemonicParsing="false" onAction="#changeButton" text="Change" />
-      <Label layoutX="357.0" layoutY="546.0" text="Copyright@ 2018 SK Beauty Supply" />
+      <Label layoutX="401.0" layoutY="546.0" text="Copyright@2018 JNS CHOIS" />
       <Label layoutX="5.0" layoutY="546.0" text="John Choi" />
    </children>
 </AnchorPane>

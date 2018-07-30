@@ -31,6 +31,7 @@ public class EmployeeScreen {
 	@FXML private Label last;
 	@FXML private Label payrate;
 	@FXML private TextField hours;
+	@FXML private TextField minutes;
 	@FXML private Label paycheck;
 	@FXML private Label withTax;
 
@@ -48,6 +49,7 @@ public class EmployeeScreen {
 		payrate.setText(Double.toString(employee.getPayrate()));
 		paycheck.setText("0.00");
 		withTax.setText("0.00");
+		hours.requestFocus();
 	}
 	
 	/**
@@ -55,10 +57,12 @@ public class EmployeeScreen {
 	 */
 	@FXML
 	public void calculateButton() {
-		if (hours.getText().equals("")) {
-			AlertBox.display("Error", "You must enter a value for hours");
+		if (hours.getText().equals("") || minutes.getText().equals("")) {
+			AlertBox.display("Error", "You must enter a value for hour and minute");
 			return;
 		}
+		double numericHour = Double.parseDouble(hours.getText());
+		double numericMinute = Double.parseDouble(minutes.getText()); //TODO calculate time in decimal
 		paycheck.setText(String.format("%.2f", Double.toString(employee.calculateWage(Double.parseDouble(hours.getText())))));
 		withTax.setText(String.format("%.2f", wcm.calculatePaycheckWithTax(employee)));
 	}

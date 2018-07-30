@@ -25,7 +25,8 @@ public class AlertBox {
 		//requirement: you cant do anything else until you clear the alert box
 		window.initModality(Modality.APPLICATION_MODAL); //block any user interaction until this box is closed
 		window.setTitle(title);
-		window.setMinWidth(250);
+		window.setMinWidth(350);
+		window.setMinHeight(150);
 		
 		Label label = new Label();
 		label.setText(message);
