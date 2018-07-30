@@ -46,8 +46,8 @@ public class EmployeeScreen {
 		first.setText(e.getFirst());
 		last.setText(employee.getLast());
 		payrate.setText(Double.toString(employee.getPayrate()));
-		paycheck.setText(Double.toString(0));
-		withTax.setText(Double.toString(0));
+		paycheck.setText("0.00");
+		withTax.setText("0.00");
 	}
 	
 	/**
@@ -55,7 +55,12 @@ public class EmployeeScreen {
 	 */
 	@FXML
 	public void calculateButton() {
-		
+		if (hours.getText().equals("")) {
+			AlertBox.display("Error", "You must enter a value for hours");
+			return;
+		}
+		paycheck.setText(String.format("%.2f", Double.toString(employee.calculateWage(Double.parseDouble(hours.getText())))));
+		withTax.setText(String.format("%.2f", wcm.calculatePaycheckWithTax(employee)));
 	}
 	
 	/**

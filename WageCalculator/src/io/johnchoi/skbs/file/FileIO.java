@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import io.johnchoi.skbs.objects.Employee;
@@ -32,11 +33,15 @@ public class FileIO {
 		File myFile = new File(filename);
 		Scanner readFile = new Scanner(myFile);
 		while (readFile.hasNextLine()) {
-			String firstName = readFile.next().trim();
-			String lastName = readFile.next().trim();
-			double payrate = readFile.nextDouble();
-			Employee newEmployee = new Employee(firstName, lastName, payrate);
-			employees.add(newEmployee);
+			try {
+				String firstName = readFile.next().trim();
+				String lastName = readFile.next().trim();
+				double payrate = readFile.nextDouble();
+				Employee newEmployee = new Employee(firstName, lastName, payrate);
+				employees.add(newEmployee);
+			} catch (NoSuchElementException e) {
+				break;
+			}
 		}
 		readFile.close();
 		return employees;
@@ -50,7 +55,7 @@ public class FileIO {
 	public static void saveFile(ArrayList<Employee> employees) {
 		PrintWriter pw = null;
 		try {
-			pw = new PrintWriter("input/employees.txt");
+			pw = new PrintWriter("input/employee.txt");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

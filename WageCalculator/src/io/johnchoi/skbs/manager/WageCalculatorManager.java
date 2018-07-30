@@ -136,4 +136,13 @@ public class WageCalculatorManager {
 		taxRate = newTax;
 		FileIO.editTaxRate(taxRate);
 	}
+	
+	/**
+	 * Getter for tax rate.
+	 * 
+	 * @return the tax rate
+	 */
+	public double getTaxRate() {
+		return taxRate;
+	}
 }

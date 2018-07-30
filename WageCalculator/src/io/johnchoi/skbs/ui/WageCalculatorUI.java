@@ -19,6 +19,7 @@ public class WageCalculatorUI extends Application {
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			WageCalculatorControllerUI controller = loader.getController();
 			controller.initialize();
+			primaryStage.setTitle("SK Beauty Supply - Pay Check Calculator");
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);
 			primaryStage.centerOnScreen();
