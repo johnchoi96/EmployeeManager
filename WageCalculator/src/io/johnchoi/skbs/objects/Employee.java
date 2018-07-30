@@ -102,21 +102,6 @@ public class Employee implements Comparable<Employee> {
 	}
 
 	/**
-	 * Generates hash code for this employee.
-	 * 
-	 * @see java.lang.Object#hashCode()
-	 * @return hash code for this employee
-	 */
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((first == null) ? 0 : first.hashCode());
-		result = prime * result + ((last == null) ? 0 : last.hashCode());
-		return result;
-	}
-
-	/**
 	 * Returns true if two employees are equal.
 	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
@@ -142,6 +127,8 @@ public class Employee implements Comparable<Employee> {
 				return false;
 		} else if (!last.equals(other.last))
 			return false;
+		if (Double.doubleToLongBits(payrate) != Double.doubleToLongBits(other.payrate))
+			return false;
 		return true;
 	}
 
@@ -152,7 +139,7 @@ public class Employee implements Comparable<Employee> {
 	 */
 	@Override
 	public String toString() {
-		return String.format("Employee[ name=%s %s, wage=%.2f ]", first, last, payrate);
+		return String.format("Employee[ name=%s %s, payrate=%.2f ]", first, last, payrate);
 	}
 	
 	/**
