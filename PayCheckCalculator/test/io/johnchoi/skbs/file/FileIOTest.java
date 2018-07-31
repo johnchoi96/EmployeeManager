@@ -9,7 +9,7 @@ import java.io.FileNotFoundException;
 
 import org.junit.Test;
 
-import io.johnchoi.skbs.manager.WageCalculatorManager;
+import io.johnchoi.skbs.manager.PaycheckCalculatorManager;
 
 /**
  * Tests {@link io.johnchoi.skbs.file.FileIO}.
@@ -25,7 +25,7 @@ public class FileIOTest {
 	 */
 	@Test
 	public void testSaveFile() throws FileNotFoundException {
-		WageCalculatorManager wcm = new WageCalculatorManager("input/employee.txt", "input/taxrate.txt");
+		PaycheckCalculatorManager wcm = new PaycheckCalculatorManager("input/employee.txt", "input/taxrate.txt");
 		wcm.saveState();
 		assertNotNull(wcm);
 	}

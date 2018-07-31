@@ -6,7 +6,7 @@ package io.johnchoi.skbs.ui;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import io.johnchoi.skbs.manager.WageCalculatorManager;
+import io.johnchoi.skbs.manager.PaycheckCalculatorManager;
 import io.johnchoi.skbs.objects.Employee;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -30,7 +30,7 @@ import javafx.stage.Stage;
  */
 public class PaycheckCalculatorControllerUI {
 	
-	private WageCalculatorManager wcm;
+	private PaycheckCalculatorManager wcm;
 	@FXML private TextField first;
 	@FXML private TextField last;
 	@FXML private TextField payrate;
@@ -47,7 +47,7 @@ public class PaycheckCalculatorControllerUI {
 	 */
 	public void initialize() {
 		try {
-			wcm = new WageCalculatorManager("input/employee.txt", "input/taxrate.txt");
+			wcm = new PaycheckCalculatorManager("input/employee.txt", "input/taxrate.txt");
 			this.firstNameCol.setCellValueFactory(new PropertyValueFactory<Employee, String>("first"));
 			this.lastNameCol.setCellValueFactory(new PropertyValueFactory<Employee, String>("last"));
 			this.payrateCol.setCellValueFactory(new PropertyValueFactory<Employee, Double>("payrate"));

@@ -5,7 +5,7 @@ package io.johnchoi.skbs.ui;
 
 import java.io.IOException;
 
-import io.johnchoi.skbs.manager.WageCalculatorManager;
+import io.johnchoi.skbs.manager.PaycheckCalculatorManager;
 import io.johnchoi.skbs.objects.Employee;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,7 +26,7 @@ import javafx.stage.Stage;
 public class EmployeeScreen {
 	
 	private final double TAX_RATE = 0.0765;
-	private WageCalculatorManager wcm;
+	private PaycheckCalculatorManager wcm;
 	private Employee employee;
 	@FXML private Label first;
 	@FXML private Label last;
@@ -42,7 +42,7 @@ public class EmployeeScreen {
 	 * @param wcm manager
 	 * @param e employee to show
 	 */
-	public void initialize(WageCalculatorManager wcm, Employee e) {
+	public void initialize(PaycheckCalculatorManager wcm, Employee e) {
 		this.wcm = wcm;
 		employee = e;
 		first.setText(e.getFirst());

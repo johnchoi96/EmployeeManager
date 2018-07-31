@@ -18,7 +18,7 @@ import io.johnchoi.skbs.objects.Employee;
  * @since 07312018
  * @version 1.1
  */
-public class WageCalculatorManager {
+public class PaycheckCalculatorManager {
 	
 	private double federalTax;
 	private double stateTax;
@@ -31,7 +31,7 @@ public class WageCalculatorManager {
 	 * @param taxRateFile file that contains tax rate information
 	 * @throws FileNotFoundException thrown if the file cannot be opened
 	 */
-	public WageCalculatorManager(String employeeFile, String taxRateFile) throws FileNotFoundException {
+	public PaycheckCalculatorManager(String employeeFile, String taxRateFile) throws FileNotFoundException {
 		employees = FileIO.loadFile(employeeFile);
 		double[] taxes = FileIO.readTaxRate(taxRateFile);
 		federalTax = taxes[0];

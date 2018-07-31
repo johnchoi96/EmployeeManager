@@ -12,32 +12,32 @@ import org.junit.Test;
 import io.johnchoi.skbs.objects.Employee;
 
 /**
- * Tests {@link io.johnchoi.skbs.manager.WageCalculatorManager}.
+ * Tests {@link io.johnchoi.skbs.manager.PaycheckCalculatorManager}.
  * 
  * @author John Choi
  * @since 07302018
  */
-public class WageCalculatorManagerTest {
+public class PaycheckCalculatorManagerTest {
 
 	/**
-	 * Test method for {@link io.johnchoi.skbs.manager.WageCalculatorManager#findEmployee(java.lang.String, java.lang.String)}.
+	 * Test method for {@link io.johnchoi.skbs.manager.PaycheckCalculatorManager#findEmployee(java.lang.String, java.lang.String)}.
 	 * @throws FileNotFoundException thrown if file is not found
 	 */
 	@Test
 	public void testFindEmployee() throws FileNotFoundException {
-		WageCalculatorManager wcm = new WageCalculatorManager("input/employee.txt", "input/taxrate.txt");
+		PaycheckCalculatorManager wcm = new PaycheckCalculatorManager("input/employee.txt", "input/taxrate.txt");
 		Employee temp1 = wcm.findEmployee("John", "Choi");
 		Employee temp = new Employee("John", "Choi", 8.5);
 		assertTrue(temp1.equals(temp));
 	}
 
 	/**
-	 * Test method for {@link io.johnchoi.skbs.manager.WageCalculatorManager#removeEmployee(java.lang.String, java.lang.String)}.
+	 * Test method for {@link io.johnchoi.skbs.manager.PaycheckCalculatorManager#removeEmployee(java.lang.String, java.lang.String)}.
 	 * @throws FileNotFoundException 
 	 */
 	@Test
 	public void testRemoveEmployee() throws FileNotFoundException {
-		WageCalculatorManager wcm = new WageCalculatorManager("input/employee.txt", "input/taxrate.txt");
+		PaycheckCalculatorManager wcm = new PaycheckCalculatorManager("input/employee.txt", "input/taxrate.txt");
 		assertEquals(7, wcm.getEmployees().size());
 		wcm.removeEmployee("John", "Choi");
 		assertEquals(6, wcm.getEmployees().size());
