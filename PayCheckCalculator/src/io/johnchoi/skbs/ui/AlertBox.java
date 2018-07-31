@@ -15,7 +15,7 @@ import javafx.stage.Stage;
  * Shows the alert box.
  * 
  * @author John Choi
- * @since 07302018
+ * @since 07312018
  */
 public class AlertBox {
 
@@ -30,7 +30,8 @@ public class AlertBox {
 		
 		Label label = new Label();
 		label.setText(message);
-		Button closeButton = new Button("Close the window");
+		Button closeButton = new Button("OK");
+		closeButton.setPrefWidth(100);
 		closeButton.setOnAction(e -> window.close());
 		VBox layout = new VBox(10);
 		layout.getChildren().addAll(label, closeButton);

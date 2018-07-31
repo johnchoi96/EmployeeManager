@@ -16,7 +16,7 @@ import io.johnchoi.skbs.objects.Employee;
  * 
  * @author John Choi
  * @since 07312018
- * @version 1.1
+ * @version 1.2
  */
 public class PaycheckCalculatorManager {
 	
@@ -78,20 +78,6 @@ public class PaycheckCalculatorManager {
 	}
 	
 	/**
-	 * Returns the sorted list of employees.
-	 * 
-	 * @return list of employees
-	 */
-	public String getEmployeeList() {
-		StringBuilder sb = new StringBuilder();
-		Collections.sort(employees);
-		for (int i = 0; i < employees.size(); i++) {
-			sb.append(employees.get(i).toString() + "\n");
-		}
-		return sb.toString();
-	}
-	
-	/**
 	 * Saves the current state of program to the file.
 	 */
 	public void saveState() {
@@ -104,6 +90,7 @@ public class PaycheckCalculatorManager {
 	 * @return list of employees
 	 */
 	public ArrayList<Employee> getEmployees() {
+		Collections.sort(employees);
 		return employees;
 	}
 	
