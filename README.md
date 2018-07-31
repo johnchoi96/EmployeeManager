@@ -1,5 +1,5 @@
-# WageCalculator_SKBS
+# PayCheckCalculator_JNSCHOIS
 
-Wage calculator designed to store employee's data (name, wage) and calculate their weekly wage based on pay rate and hours
+Pay check calculator designed to store employee's data (name, wage) and calculate their weekly pay check based on pay rate and hours
 
-# Made for JNS CHOIS by John Choi
+# Made for JNS CHOIS L.L.C. by John Choi
