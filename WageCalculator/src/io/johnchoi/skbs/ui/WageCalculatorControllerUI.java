@@ -26,7 +26,7 @@ import javafx.stage.Stage;
  * Main controller for this software GUI.
  * 
  * @author John Choi
- * @since 07302018
+ * @since 07312018
  */
 public class WageCalculatorControllerUI {
 	
@@ -80,7 +80,11 @@ public class WageCalculatorControllerUI {
 			AlertBox.display("Error", "Please enter first, last, and payrate of adding employee");
 			return;
 		}
-		wcm.addEmployee(first.getText(), last.getText(), Double.parseDouble(payrate.getText()));
+		if (first.getText().trim().contains(" ") || last.getText().trim().contains(" ")) {
+			AlertBox.display("Error", "First and last names cannot contain a space");
+			return;
+		}
+		wcm.addEmployee(first.getText().trim(), last.getText().trim(), Double.parseDouble(payrate.getText()));
 		this.employeeList.setItems(getEmployee());
 		first.setText("");
 		last.setText("");
@@ -99,7 +103,7 @@ public class WageCalculatorControllerUI {
 			AlertBox.display("Error", "Please enter first and last names of deleting employee");
 			return;
 		}
-		wcm.removeEmployee(first.getText(), last.getText());
+		wcm.removeEmployee(first.getText().trim(), last.getText().trim());
 		this.employeeList.setItems(getEmployee());
 		first.setText("");
 		last.setText("");

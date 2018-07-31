@@ -21,7 +21,7 @@ import javafx.stage.Stage;
  * Controller for employee screen.
  * 
  * @author John Choi
- * @since 07302018
+ * @since 07312018
  */
 public class EmployeeScreen {
 	

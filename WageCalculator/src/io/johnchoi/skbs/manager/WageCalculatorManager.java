@@ -15,8 +15,8 @@ import io.johnchoi.skbs.objects.Employee;
  * Main manager for this software.
  * 
  * @author John Choi
- * @since 07302018
- * @version 1.0
+ * @since 07312018
+ * @version 1.1
  */
 public class WageCalculatorManager {
 	
