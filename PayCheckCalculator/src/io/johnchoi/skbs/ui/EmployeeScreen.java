@@ -71,7 +71,7 @@ public class EmployeeScreen {
 			numericHour = Integer.parseInt(hours.getText());
 			numericMinute = Integer.parseInt(minutes.getText());
 		} catch (NumberFormatException e) {
-			AlertBox.display("Error", "You must put hours and minutes in number");
+			AlertBox.display("Error", "Input must be a number");
 			hours.setText("");
 			minutes.setText("0");
 			return;
