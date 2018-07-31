@@ -76,7 +76,7 @@ public class Employee implements Comparable<Employee> {
 	/**
 	 * Setter for wage.
 	 * 
-	 * @param wage the wage to set
+	 * @param payRate the pay rate to set
 	 */
 	public void setPayrate(double payRate) {
 		this.payrate = payRate;
@@ -89,16 +89,6 @@ public class Employee implements Comparable<Employee> {
 	 */
 	public String saveInfo() {
 		return String.format("%s %s %.2f", first, last, payrate);
-	}
-	
-	/**
-	 * Calculates wage to be paid for the week.
-	 * TODO
-	 * @param hours worked
-	 * @return wage to be paid
-	 */
-	public double calculateWage(double hours) {
-		return 0;
 	}
 
 	/**
@@ -126,8 +116,6 @@ public class Employee implements Comparable<Employee> {
 			if (other.last != null)
 				return false;
 		} else if (!last.equals(other.last))
-			return false;
-		if (Double.doubleToLongBits(payrate) != Double.doubleToLongBits(other.payrate))
 			return false;
 		return true;
 	}

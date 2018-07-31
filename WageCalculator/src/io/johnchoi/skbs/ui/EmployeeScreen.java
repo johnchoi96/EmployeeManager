@@ -25,6 +25,7 @@ import javafx.stage.Stage;
  */
 public class EmployeeScreen {
 	
+	private final double TAX_RATE = 0.0765;
 	private WageCalculatorManager wcm;
 	private Employee employee;
 	@FXML private Label first;
@@ -33,7 +34,7 @@ public class EmployeeScreen {
 	@FXML private TextField hours;
 	@FXML private TextField minutes;
 	@FXML private Label paycheck;
-	@FXML private Label withTax;
+	@FXML private Label withoutTax;
 
 	/**
 	 * Constructs this employee screen.
@@ -48,7 +49,10 @@ public class EmployeeScreen {
 		last.setText(employee.getLast());
 		payrate.setText(Double.toString(employee.getPayrate()));
 		paycheck.setText("0.00");
-		withTax.setText("0.00");
+//		withoutTax = new Label("0.00");
+		withoutTax.setText("0.00");
+		hours.setText("0");
+		minutes.setText("0");
 		hours.requestFocus();
 	}
 	
@@ -62,14 +66,31 @@ public class EmployeeScreen {
 			return;
 		}
 		double numericHour = Double.parseDouble(hours.getText());
-		double numericMinute = Double.parseDouble(minutes.getText()); //TODO calculate time in decimal
-		paycheck.setText(String.format("%.2f", Double.toString(employee.calculateWage(Double.parseDouble(hours.getText())))));
-		withTax.setText(String.format("%.2f", wcm.calculatePaycheckWithTax(employee)));
+		double numericMinute = Double.parseDouble(minutes.getText());
+		double convertedTime = calculateTime(numericHour, numericMinute);
+		double totalPaycheck = convertedTime * Double.parseDouble(payrate.getText());
+		paycheck.setText(String.format("%.2f", totalPaycheck));
+		double woTax = 0;
+		woTax = totalPaycheck - (totalPaycheck * TAX_RATE) - wcm.getFederalTaxRate() - wcm.getStateTaxRate();
+		withoutTax.setText(String.format("%.2f", woTax));
+	}
+	
+	/**
+	 * Helper method that takes in hour and minutes to return decimal format of time.
+	 * 
+	 * @param hours to convert
+	 * @param minutes to convert
+	 * @return converted time
+	 */
+	private double calculateTime(double hours, double minutes) {
+		return hours + (double) (minutes / 60.0);
 	}
 	
 	/**
 	 * Defines the scene change button.
-	 * @throws IOException 
+	 * 
+	 * @param e action
+	 * @throws IOException if there is problem reading file
 	 */
 	@FXML
 	public void backToMain(ActionEvent e) throws IOException {

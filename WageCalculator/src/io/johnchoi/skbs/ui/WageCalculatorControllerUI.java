@@ -38,7 +38,8 @@ public class WageCalculatorControllerUI {
 	@FXML private TableColumn<Employee, String> firstNameCol;
 	@FXML private TableColumn<Employee, String> lastNameCol;
 	@FXML private TableColumn<Employee, Double> payrateCol;
-	@FXML private TextField taxInfo;
+	@FXML private TextField stateTax;
+	@FXML private TextField federalTax;
 	private ObservableList<Employee> employee;
 	
 	/**
@@ -50,8 +51,8 @@ public class WageCalculatorControllerUI {
 			this.firstNameCol.setCellValueFactory(new PropertyValueFactory<Employee, String>("first"));
 			this.lastNameCol.setCellValueFactory(new PropertyValueFactory<Employee, String>("last"));
 			this.payrateCol.setCellValueFactory(new PropertyValueFactory<Employee, Double>("payrate"));
-//			this.taxInfo = new TextField(String.format("%.3f", wcm.getTaxRate()));
-			this.taxInfo.setText(String.format("%.3f", wcm.getTaxRate()));
+			this.stateTax.setText(String.format("%.2f", wcm.getStateTaxRate()));
+			this.federalTax.setText(String.format("%.2f", wcm.getFederalTaxRate()));
 			this.employeeList.setItems(getEmployee());
 		} catch (FileNotFoundException e) {
 			AlertBox.display("Error", "Unable to open required file(s)");
@@ -110,7 +111,7 @@ public class WageCalculatorControllerUI {
 	 * Defines the scene changer view button.
 	 * 
 	 * @param e action
-	 * @throws IOException 
+	 * @throws IOException if there is problem reading file
 	 */
 	@FXML
 	public void changeSceneButton(ActionEvent e) throws IOException {
@@ -140,7 +141,7 @@ public class WageCalculatorControllerUI {
 	@FXML
 	public void changeButton(ActionEvent e) {
 		try {
-			wcm.editTaxRate(Double.parseDouble(taxInfo.getText()));
+			wcm.editTaxRate(Double.parseDouble(federalTax.getText()), Double.parseDouble(stateTax.getText()));
 		} catch (NumberFormatException e1) {
 			AlertBox.display("Error", "Input must be a number");
 			return;

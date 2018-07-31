@@ -67,28 +67,33 @@ public class FileIO {
 	
 	/**
 	 * Reads the file with tax rate information and returns tax rate.
+	 * Index 0 is federal, index 1 is state.
 	 * 
 	 * @param filename with tax info
-	 * @return tax rate
+	 * @return tax rates
 	 * @throws FileNotFoundException thrown if file cannot be opened
 	 */
-	public static double readTaxRate(String filename) throws FileNotFoundException {
+	public static double[] readTaxRate(String filename) throws FileNotFoundException {
+		double[] returnVal = new double[2];
 		File myFile = new File(filename);
 		Scanner readFile = new Scanner(myFile);
-		double taxrate = readFile.nextDouble();
+		returnVal[0] = readFile.nextDouble();
+		returnVal[1] = readFile.nextDouble();
 		readFile.close();
-		return taxrate;
+		return returnVal;
 	}
 	
 	/**
 	 * Edits the tax file information.
 	 * 
-	 * @param taxrate to set
+	 * @param federal tax to set
+	 * @param state tax to set
 	 * @throws IOException if exception occurs
 	 */
-	public static void editTaxRate(double taxrate) throws IOException {
+	public static void editTaxRate(double federal, double state) throws IOException {
 		PrintWriter pw = new PrintWriter("input/taxrate.txt");
-		pw.print(taxrate);
+		pw.println(federal);
+		pw.println(state);
 		pw.close();
 	}
 }

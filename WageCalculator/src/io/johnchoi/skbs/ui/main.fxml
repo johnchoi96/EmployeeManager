@@ -32,10 +32,12 @@
       <Label layoutX="18.0" layoutY="460.0" text="Pay Rate" />
       <TextField fx:id="payrate" layoutX="130.0" layoutY="455.0" />
       <Button layoutX="391.0" layoutY="477.0" mnemonicParsing="false" onAction="#saveButton" prefHeight="48.0" prefWidth="114.0" text="Save" />
-      <Label layoutX="391.0" layoutY="400.0" text="Tax Rate:" />
-      <TextField fx:id="taxInfo" layoutX="466.0" layoutY="395.0" prefHeight="27.0" prefWidth="114.0" />
+      <Label layoutX="391.0" layoutY="400.0" text="State w/ h:" />
+      <TextField fx:id="stateTax" layoutX="466.0" layoutY="395.0" prefHeight="27.0" prefWidth="114.0" />
       <Button layoutX="514.0" layoutY="430.0" mnemonicParsing="false" onAction="#changeButton" text="Change" />
       <Label layoutX="401.0" layoutY="546.0" text="Copyright@2018 JNS CHOIS" />
       <Label layoutX="5.0" layoutY="546.0" text="John Choi" />
+      <TextField fx:id="federalTax" layoutX="466.0" layoutY="353.0" prefHeight="27.0" prefWidth="114.0" />
+      <Label layoutX="375.0" layoutY="358.0" text="Federal w/ h:" />
    </children>
 </AnchorPane>

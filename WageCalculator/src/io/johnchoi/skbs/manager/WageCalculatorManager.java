@@ -20,7 +20,8 @@ import io.johnchoi.skbs.objects.Employee;
  */
 public class WageCalculatorManager {
 	
-	private double taxRate;
+	private double federalTax;
+	private double stateTax;
 	private ArrayList<Employee> employees;
 
 	/**
@@ -32,7 +33,9 @@ public class WageCalculatorManager {
 	 */
 	public WageCalculatorManager(String employeeFile, String taxRateFile) throws FileNotFoundException {
 		employees = FileIO.loadFile(employeeFile);
-		taxRate = FileIO.readTaxRate(taxRateFile);
+		double[] taxes = FileIO.readTaxRate(taxRateFile);
+		federalTax = taxes[0];
+		stateTax = taxes[1];
 	}
 	
 	/**
@@ -54,16 +57,6 @@ public class WageCalculatorManager {
 		} else {
 			return null;
 		}
-	}
-	
-	/**
-	 * Calculates pay check with tax consideration.
-	 * TODO
-	 * @param e - employee
-	 * @return adjusted pay check
-	 */
-	public double calculatePaycheckWithTax(Employee e) {
-		return 0;
 	}
 	
 	/**
@@ -129,12 +122,14 @@ public class WageCalculatorManager {
 	/**
 	 * Edits the tax rate and saves it.
 	 * 
-	 * @param newTax to set
+	 * @param newFederalTax to set
+	 * @param newStateTax to set
 	 * @throws IOException if file IO exception occurs
 	 */
-	public void editTaxRate(double newTax) throws IOException {
-		taxRate = newTax;
-		FileIO.editTaxRate(taxRate);
+	public void editTaxRate(double newFederalTax, double newStateTax) throws IOException {
+		federalTax = newFederalTax;
+		stateTax = newStateTax;
+		FileIO.editTaxRate(federalTax, stateTax);
 	}
 	
 	/**
@@ -142,7 +137,16 @@ public class WageCalculatorManager {
 	 * 
 	 * @return the tax rate
 	 */
-	public double getTaxRate() {
-		return taxRate;
+	public double getFederalTaxRate() {
+		return federalTax;
+	}
+	
+	/**
+	 * Getter for tax rate.
+	 * 
+	 * @return the tax rate
+	 */
+	public double getStateTaxRate() {
+		return stateTax;
 	}
 }

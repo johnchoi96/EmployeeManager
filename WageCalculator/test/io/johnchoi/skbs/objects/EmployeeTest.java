@@ -68,8 +68,6 @@ public class EmployeeTest {
 		Employee em = new Employee("John", "Choi", 8.50);
 		Employee em1 = new Employee("Jane", "Doe", 7.25);
 		assertFalse(em.equals(em1));
-		Employee em2 = new Employee("John", "Choi", 11.5);
-		assertFalse(em2.equals(em));
 		Employee em3 = new Employee("John", "Choi", 8.50);
 		assertTrue(em3.equals(em));
 	}
