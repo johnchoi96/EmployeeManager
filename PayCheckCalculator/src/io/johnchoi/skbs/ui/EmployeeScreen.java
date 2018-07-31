@@ -51,7 +51,7 @@ public class EmployeeScreen {
 		paycheck.setText("0.00");
 //		withoutTax = new Label("0.00");
 		withoutTax.setText("0.00");
-		hours.setText("0");
+		hours.setText("");
 		minutes.setText("0");
 		hours.requestFocus();
 	}
@@ -62,11 +62,20 @@ public class EmployeeScreen {
 	@FXML
 	public void calculateButton() {
 		if (hours.getText().equals("") || minutes.getText().equals("")) {
-			AlertBox.display("Error", "You must enter a value for hour and minute");
+			AlertBox.display("Error", "Input must be a number");
 			return;
 		}
-		double numericHour = Double.parseDouble(hours.getText());
-		double numericMinute = Double.parseDouble(minutes.getText());
+		int numericHour = 0;
+		int numericMinute = 0;
+		try {
+			numericHour = Integer.parseInt(hours.getText());
+			numericMinute = Integer.parseInt(minutes.getText());
+		} catch (NumberFormatException e) {
+			AlertBox.display("Error", "You must put hours and minutes in number");
+			hours.setText("");
+			minutes.setText("0");
+			return;
+		}
 		double convertedTime = calculateTime(numericHour, numericMinute);
 		double totalPaycheck = convertedTime * Double.parseDouble(payrate.getText());
 		paycheck.setText(String.format("%.2f", totalPaycheck));
@@ -82,7 +91,7 @@ public class EmployeeScreen {
 	 * @param minutes to convert
 	 * @return converted time
 	 */
-	private double calculateTime(double hours, double minutes) {
+	private double calculateTime(int hours, int minutes) {
 		return hours + (double) (minutes / 60.0);
 	}
 	

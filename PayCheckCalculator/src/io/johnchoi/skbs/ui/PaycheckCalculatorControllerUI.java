@@ -150,18 +150,8 @@ public class PaycheckCalculatorControllerUI {
 			AlertBox.display("Error", "Input must be a number");
 			return;
 		} catch (IOException e1) {
-			AlertBox.display("Error", "Error editing tax rate");
+			AlertBox.display("Error", "Error editing tax rate file");
 			return;
 		}
-	}
-	
-	/**
-	 * Defines behavior for save button.
-	 * 
-	 * @param e action
-	 */
-	@FXML
-	public void saveButton(ActionEvent e) {
-		wcm.saveState();
 	}
 }
