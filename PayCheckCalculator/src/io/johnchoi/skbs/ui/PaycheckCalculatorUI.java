@@ -6,9 +6,20 @@ import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
-
+/**
+ * Initializes GUI for PayCheck Calculator.
+ * 
+ * @author John Choi
+ * @since 07312018
+ * @version 1.2.1
+ */
 public class PaycheckCalculatorUI extends Application {
 	
+	/**
+	 * Initializes GUI.
+	 * 
+	 * @param primaryStage main stage
+	 */
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -19,7 +30,7 @@ public class PaycheckCalculatorUI extends Application {
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			PaycheckCalculatorControllerUI controller = loader.getController();
 			controller.initialize();
-			primaryStage.setTitle("JNS CHOIS - Pay Check Calculator");
+			primaryStage.setTitle("Pay Check Calculator");
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);
 			primaryStage.centerOnScreen();
@@ -29,6 +40,12 @@ public class PaycheckCalculatorUI extends Application {
 		}
 	}
 	
+	/**
+	 * Main method for this software.
+	 * Launches GUI.
+	 * 
+	 * @param args command-line arguments
+	 */
 	public static void main(String[] args) {
 		launch(args);
 	}
