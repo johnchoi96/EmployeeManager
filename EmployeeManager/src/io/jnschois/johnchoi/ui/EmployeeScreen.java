@@ -77,6 +77,8 @@ public class EmployeeScreen {
 	@FXML
 	public void calculateButton() {
 		if (hours.getText().equals("") || minutes.getText().equals("")) {
+			hours.setText("0");
+			minutes.setText("0");
 			AlertBox.display("Error", "Input must be a number");
 			return;
 		}
@@ -86,9 +88,9 @@ public class EmployeeScreen {
 			numericHour = Integer.parseInt(hours.getText());
 			numericMinute = Integer.parseInt(minutes.getText());
 		} catch (NumberFormatException e) {
-			AlertBox.display("Error", "Input must be a number");
-			hours.setText("");
+			hours.setText("0");
 			minutes.setText("0");
+			AlertBox.display("Error", "Input must be a number");
 			return;
 		}
 		double convertedTime = calculateTime(numericHour, numericMinute);
