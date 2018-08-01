@@ -119,7 +119,7 @@ public class EmployeeScreen {
 	@FXML
 	public void backToMain(ActionEvent e) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("/io/johnchoi/skbs/ui/main.fxml"));
+		loader.setLocation(getClass().getResource("/io/jnschois/johnchoi/ui/main.fxml"));
 		Parent mainViewParent = loader.load();
 		Scene employeeViewScene = new Scene(mainViewParent);
 		
@@ -166,6 +166,12 @@ public class EmployeeScreen {
 			}
 		}
 		wcm.saveState();
+		if (initPay != pay) {
+			hours.setText("");
+			minutes.setText("0");
+			paycheck.setText("0.00");
+			withoutTax.setText("0.00");
+		}
 	}
 	
 	/**

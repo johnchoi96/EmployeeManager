@@ -137,7 +137,7 @@ public class EmployeeManagerControllerUI {
 	@FXML
 	public void changeSceneButton(ActionEvent e) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("/io/johnchoi/skbs/ui/employeeScreen.fxml"));
+		loader.setLocation(getClass().getResource("/io/jnschois/johnchoi/ui/employeeScreen.fxml"));
 		Parent employeeViewParent = loader.load();
 		Scene employeeViewScene = new Scene(employeeViewParent);
 		
