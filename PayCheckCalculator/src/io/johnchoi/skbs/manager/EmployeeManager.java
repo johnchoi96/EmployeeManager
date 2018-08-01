@@ -15,10 +15,10 @@ import io.johnchoi.skbs.objects.Employee;
  * Main manager for this software.
  * 
  * @author John Choi
- * @since 07312018
- * @version 1.2.1
+ * @since 08012018
+ * @version 2.0
  */
-public class PaycheckCalculatorManager {
+public class EmployeeManager {
 	
 	private double federalTax;
 	private double stateTax;
@@ -31,7 +31,7 @@ public class PaycheckCalculatorManager {
 	 * @param taxRateFile file that contains tax rate information
 	 * @throws FileNotFoundException thrown if the file cannot be opened
 	 */
-	public PaycheckCalculatorManager(String employeeFile, String taxRateFile) throws FileNotFoundException {
+	public EmployeeManager(String employeeFile, String taxRateFile) throws FileNotFoundException {
 		employees = FileIO.loadFile(employeeFile);
 		double[] taxes = FileIO.readTaxRate(taxRateFile);
 		federalTax = taxes[0];

@@ -7,13 +7,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 /**
- * Initializes GUI for PayCheck Calculator.
+ * Initializes GUI for Employee Manager.
  * 
  * @author John Choi
- * @since 07312018
- * @version 1.2.1
+ * @since 08012018
+ * @version 2.0
  */
-public class PaycheckCalculatorUI extends Application {
+public class EmployeeManagerUI extends Application {
 	
 	/**
 	 * Initializes GUI.
@@ -28,9 +28,9 @@ public class PaycheckCalculatorUI extends Application {
 			Parent root = loader.load();
 			Scene scene = new Scene(root, 594, 568);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			PaycheckCalculatorControllerUI controller = loader.getController();
+			EmployeeManagerControllerUI controller = loader.getController();
 			controller.initialize();
-			primaryStage.setTitle("Pay Check Calculator");
+			primaryStage.setTitle("Employee Manager");
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);
 			primaryStage.centerOnScreen();

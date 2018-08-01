@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="594.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.johnchoi.skbs.ui.PaycheckCalculatorControllerUI">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="594.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.johnchoi.skbs.ui.EmployeeManagerControllerUI">
    <children>
       <Label layoutX="35.0" layoutY="14.0" prefHeight="19.0" prefWidth="114.0" text="Employee List">
          <font>
@@ -35,7 +35,7 @@
       <TextField fx:id="stateTax" layoutX="437.0" layoutY="434.0" prefHeight="27.0" prefWidth="114.0" />
       <Button layoutX="485.0" layoutY="469.0" mnemonicParsing="false" onAction="#changeButton" text="Change" />
       <Label layoutX="401.0" layoutY="546.0" text="Copyright@2018 John Choi" />
-      <Label layoutX="5.0" layoutY="546.0" text="Version 1.2.1" />
+      <Label layoutX="5.0" layoutY="546.0" text="Version 2.0 Beta" />
       <TextField fx:id="federalTax" layoutX="437.0" layoutY="392.0" prefHeight="27.0" prefWidth="114.0" />
       <Label layoutX="346.0" layoutY="397.0" text="Federal w/ h:" />
       <Label layoutX="18.0" layoutY="358.0" text="First and last names cannot contain space(s)" />
