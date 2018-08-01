@@ -55,7 +55,8 @@ public class PaycheckCalculatorControllerUI {
 			this.federalTax.setText(String.format("%.2f", wcm.getFederalTaxRate()));
 			this.employeeList.setItems(getEmployee());
 		} catch (FileNotFoundException e) {
-			AlertBox.display("Error", "Unable to open required file(s)");
+			AlertBox.display("Error", "Unable to open required file(s).\nProgram will now terminate.");
+			System.exit(1);
 		}
 	}
 

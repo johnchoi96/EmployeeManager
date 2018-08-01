@@ -16,7 +16,7 @@ import io.johnchoi.skbs.objects.Employee;
  * 
  * @author John Choi
  * @since 07312018
- * @version 1.2
+ * @version 1.2.1
  */
 public class PaycheckCalculatorManager {
 	
