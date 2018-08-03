@@ -10,7 +10,7 @@ import javafx.scene.Scene;
  * Initializes GUI for Employee Manager.
  * 
  * @author John Choi
- * @since 08012018
+ * @since 08022018
  * @version 2.0
  */
 public class EmployeeManagerUI extends Application {
@@ -30,7 +30,7 @@ public class EmployeeManagerUI extends Application {
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			EmployeeManagerControllerUI controller = loader.getController();
 			controller.initialize();
-			primaryStage.setTitle("Employee Manager");
+			primaryStage.setTitle("Employee Manager - Main Menu");
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);
 			primaryStage.centerOnScreen();

@@ -15,10 +15,16 @@ import javafx.stage.Stage;
  * Shows the alert box.
  * 
  * @author John Choi
- * @since 07312018
+ * @since 08022018
  */
 public class AlertBox {
 
+	/**
+	 * Displays the alert box.
+	 * 
+	 * @param title of alert box
+	 * @param message of alert box
+	 */
 	public static void display(String title, String message) {
 		Stage window = new Stage();
 		

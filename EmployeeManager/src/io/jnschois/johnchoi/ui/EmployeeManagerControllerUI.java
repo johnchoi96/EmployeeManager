@@ -27,7 +27,7 @@ import javafx.stage.Stage;
  * Main controller for this software GUI.
  * 
  * @author John Choi
- * @since 08012018
+ * @since 08022018
  */
 public class EmployeeManagerControllerUI {
 	
@@ -38,6 +38,7 @@ public class EmployeeManagerControllerUI {
 	@FXML private TextField payrate;
 	@FXML private TableView<Employee> employeeList;
 	@FXML private TableColumn<Employee, String> firstNameCol;
+	@FXML private TableColumn<Employee, String> middleNameCol;
 	@FXML private TableColumn<Employee, String> lastNameCol;
 	@FXML private TableColumn<Employee, Double> payrateCol;
 	@FXML private TextField stateTax;
@@ -51,6 +52,7 @@ public class EmployeeManagerControllerUI {
 		try {
 			wcm = new EmployeeManager();
 			this.firstNameCol.setCellValueFactory(new PropertyValueFactory<Employee, String>("first"));
+			this.middleNameCol.setCellValueFactory(new PropertyValueFactory<Employee, String>("middle"));
 			this.lastNameCol.setCellValueFactory(new PropertyValueFactory<Employee, String>("last"));
 			this.payrateCol.setCellValueFactory(new PropertyValueFactory<Employee, Double>("payrate"));
 			this.stateTax.setText(String.format("%.2f", wcm.getStateTaxRate()));
@@ -149,7 +151,8 @@ public class EmployeeManagerControllerUI {
 			return;
 		}
 		
-		Stage window = (Stage) ((Node)e.getSource()).getScene().getWindow();
+		Stage window = (Stage) ((Node) e.getSource()).getScene().getWindow();
+		window.setTitle("Employee Details");
 		
 		window.setScene(employeeViewScene);
 	}

@@ -22,7 +22,7 @@ import javafx.stage.Stage;
  * Controller for employee screen.
  * 
  * @author John Choi
- * @since 08012018
+ * @since 08032018
  */
 public class EmployeeScreen {
 	
@@ -128,7 +128,8 @@ public class EmployeeScreen {
 		EmployeeManagerControllerUI controller = loader.getController();
 		controller.initialize();
 		
-		Stage window = (Stage) ((Node)e.getSource()).getScene().getWindow();
+		Stage window = (Stage) ((Node) e.getSource()).getScene().getWindow();
+		window.setTitle("Employee Manager - Main Menu");
 		
 		window.setScene(employeeViewScene);
 	}
@@ -140,35 +141,70 @@ public class EmployeeScreen {
 	 */
 	@FXML
 	public void saveChangesButton(ActionEvent e) {
-		double pay = 0;
-		try {
-			pay = Double.parseDouble(payrate.getText());
-		} catch (NumberFormatException e1) {
-			AlertBox.display("Error", "Pay rate must be a number");
+		String newFirst = first.getText().trim();
+		String newMiddle = middle.getText().trim();
+		String newLast = last.getText().trim();
+		
+		if (newFirst.equals("") || newLast.equals("") || payrate.getText().equals("")) {
+			first.setText(initFirst);
+			middle.setText(initMiddle);
+			last.setText(initLast);
+			payrate.setText(Double.toString(initPay));
+			AlertBox.display("Error", "Please enter first, last, and payrate of editing employee");
 			return;
 		}
-		if (initFirst.equals(first.getText()) && initMiddle.equals(middle.getText()) && initLast.equals(last.getText()) && initPay == pay) {
+		if (newFirst.contains(" ") || newMiddle.contains(" ") || newLast.contains(" ")) {
+			first.setText(initFirst);
+			middle.setText(initMiddle);
+			last.setText(initLast);
+			payrate.setText(Double.toString(initPay));
+			AlertBox.display("Error", "First, middle, and last names cannot contain spaces");
+			return;
+		}
+		double newPayRate = 0;
+		try {
+			newPayRate = Double.parseDouble(payrate.getText());
+		} catch (NumberFormatException e1) {
+			AlertBox.display("Error", "Pay rate must be a number");
+			first.setText(initFirst);
+			middle.setText(initMiddle);
+			last.setText(initLast);
+			payrate.setText(Double.toString(initPay));
+			return;
+		}
+		// check to see if editing employee exists
+		Employee check = new Employee(newFirst, newMiddle, newLast, newPayRate);
+		if (wcm.findEmployee(check) != null) {
+			first.setText(initFirst);
+			middle.setText(initMiddle);
+			last.setText(initLast);
+			payrate.setText(String.format("%.2f", initPay));
+			AlertBox.display("Error", "Employee with this information already exists");
+			return;
+		}
+		
+		if (initFirst.equals(first.getText()) && initMiddle.equals(middle.getText()) && initLast.equals(last.getText()) && initPay == newPayRate) {
 			return;
 		}
 		wcm.removeEmployee(employee);
 		
 		if (middle.getText().equals("")) {
 			try {
-				wcm.addEmployee(first.getText(), "null", last.getText(), pay);
+				wcm.addEmployee(first.getText(), "null", last.getText(), newPayRate);
 			} catch (DuplicateEmployeeException e1) {
 				// should never reach here
 				e1.printStackTrace();
 			}
 		} else {
 			try {
-				wcm.addEmployee(first.getText(), middle.getText(), last.getText(), pay);
+				wcm.addEmployee(first.getText(), middle.getText(), last.getText(), newPayRate);
 			} catch (DuplicateEmployeeException e1) {
 				// should never reach here
 				e1.printStackTrace();
 			}
 		}
 		wcm.saveState();
-		if (initPay != pay) {
+		if (initPay != newPayRate) {
 			hours.setText("");
 			minutes.setText("0");
 			paycheck.setText("0.00");

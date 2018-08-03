@@ -7,7 +7,7 @@ package io.jnschois.johnchoi.objects;
  * Class that defines one employee.
  * 
  * @author John Choi
- * @since 08012018
+ * @since 08022018
  */
 public class Employee implements Comparable<Employee> {
 
@@ -60,6 +60,9 @@ public class Employee implements Comparable<Employee> {
 	 * @return the middle
 	 */
 	public String getMiddle() {
+		if (middle.equals("null")) {
+			return "";
+		}
 		return middle;
 	}
 	

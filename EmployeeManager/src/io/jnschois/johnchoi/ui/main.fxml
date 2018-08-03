@@ -15,11 +15,12 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <TableView fx:id="employeeList" layoutX="14.0" layoutY="46.0" prefHeight="302.0" prefWidth="377.0">
+      <TableView fx:id="employeeList" layoutX="14.0" layoutY="46.0" prefHeight="302.0" prefWidth="381.0">
         <columns>
           <TableColumn fx:id="firstNameCol" prefWidth="94.0" text="First" />
+            <TableColumn fx:id="middleNameCol" prefWidth="75.0" text="Middle" />
           <TableColumn fx:id="lastNameCol" prefWidth="99.0" text="Last" />
-            <TableColumn fx:id="payrateCol" prefWidth="182.0" text="Pay Rate" />
+            <TableColumn fx:id="payrateCol" prefWidth="108.0" text="Pay Rate" />
         </columns>
       </TableView>
       <Button layoutX="414.0" layoutY="115.0" mnemonicParsing="false" onAction="#changeSceneButton" prefHeight="67.0" prefWidth="149.0" text="Employee Details" />
