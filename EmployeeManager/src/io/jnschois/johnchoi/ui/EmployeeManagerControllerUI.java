@@ -27,7 +27,7 @@ import javafx.stage.Stage;
  * Main controller for this software GUI.
  * 
  * @author John Choi
- * @since 08022018
+ * @since 08032018
  */
 public class EmployeeManagerControllerUI {
 	
@@ -104,6 +104,7 @@ public class EmployeeManagerControllerUI {
 		last.setText("");
 		payrate.setText("");
 		wcm.saveState();
+		first.requestFocus();
 	}
 	
 	/**
@@ -128,6 +129,7 @@ public class EmployeeManagerControllerUI {
 		last.setText("");
 		payrate.setText("");
 		wcm.saveState();
+		first.requestFocus();
 	}
 	
 	/**
