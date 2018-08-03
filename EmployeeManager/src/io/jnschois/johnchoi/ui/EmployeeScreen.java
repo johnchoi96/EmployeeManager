@@ -59,7 +59,7 @@ public class EmployeeScreen {
 			middle.setText(middleName);
 		}
 		last.setText(employee.getLast());
-		payrate.setText(Double.toString(employee.getPayrate()));
+		payrate.setText(employee.getPayrate());
 		paycheck.setText("0.00");
 		withoutTax.setText("0.00");
 		hours.setText("");
@@ -67,7 +67,7 @@ public class EmployeeScreen {
 		initFirst = first.getText();
 		initMiddle = middle.getText();
 		initLast = last.getText();
-		initPay = employee.getPayrate();
+		initPay = Double.parseDouble(employee.getPayrate());
 		hours.requestFocus();
 	}
 	
@@ -145,6 +145,7 @@ public class EmployeeScreen {
 		String newMiddle = middle.getText().trim();
 		String newLast = last.getText().trim();
 		
+		//if first, last, and pay rate inputs are missing, do nothing
 		if (newFirst.equals("") || newLast.equals("") || payrate.getText().equals("")) {
 			first.setText(initFirst);
 			middle.setText(initMiddle);
@@ -153,6 +154,7 @@ public class EmployeeScreen {
 			AlertBox.display("Error", "Please enter first, last, and payrate of editing employee");
 			return;
 		}
+		// if first, middle, and last names contain spaces, do nothing
 		if (newFirst.contains(" ") || newMiddle.contains(" ") || newLast.contains(" ")) {
 			first.setText(initFirst);
 			middle.setText(initMiddle);
@@ -164,6 +166,7 @@ public class EmployeeScreen {
 		double newPayRate = 0;
 		try {
 			newPayRate = Double.parseDouble(payrate.getText());
+			payrate.setText(String.format("%.2f", newPayRate));
 		} catch (NumberFormatException e1) {
 			AlertBox.display("Error", "Pay rate must be a number");
 			first.setText(initFirst);
@@ -172,6 +175,32 @@ public class EmployeeScreen {
 			payrate.setText(Double.toString(initPay));
 			return;
 		}
+		
+		// if only pay rate is getting updated
+		if (initFirst.equals(first.getText()) && initMiddle.equals(middle.getText()) && initLast.equals(last.getText())) {
+			if (initPay != newPayRate) {
+				wcm.removeEmployee(employee);
+				try {
+					wcm.addEmployee(newFirst, newMiddle, newLast, newPayRate);
+					hours.setText("");
+					minutes.setText("0");
+					paycheck.setText("0.00");
+					withoutTax.setText("0.00");
+					initFirst = newFirst;
+					initMiddle = newMiddle;
+					initLast = newLast;
+					initPay = newPayRate;
+					wcm.saveState();
+					return;
+				} catch (DuplicateEmployeeException e1) {
+					// should never reach here
+					e1.printStackTrace();
+				}
+			} else {
+				return;
+			}
+		}
+		
 		// check to see if editing employee exists
 		Employee check = new Employee(newFirst, newMiddle, newLast, newPayRate);
 		if (wcm.findEmployee(check) != null) {
@@ -183,11 +212,10 @@ public class EmployeeScreen {
 			return;
 		}
 		
-		if (initFirst.equals(first.getText()) && initMiddle.equals(middle.getText()) && initLast.equals(last.getText()) && initPay == newPayRate) {
-			return;
-		}
+		//first, remove the current employee
 		wcm.removeEmployee(employee);
 		
+		// add employee without middle name
 		if (middle.getText().equals("")) {
 			try {
 				wcm.addEmployee(first.getText(), "null", last.getText(), newPayRate);
@@ -195,7 +223,7 @@ public class EmployeeScreen {
 				// should never reach here
 				e1.printStackTrace();
 			}
-		} else {
+		} else { // add employee with middle name
 			try {
 				wcm.addEmployee(first.getText(), middle.getText(), last.getText(), newPayRate);
 			} catch (DuplicateEmployeeException e1) {
@@ -204,6 +232,12 @@ public class EmployeeScreen {
 			}
 		}
 		wcm.saveState();
+		// reset init* values to new values for next run
+		initFirst = newFirst;
+		initMiddle = newMiddle;
+		initLast = newLast;
+		initPay = newPayRate;
+		// if pay rate has been modified
 		if (initPay != newPayRate) {
 			hours.setText("");
 			minutes.setText("0");

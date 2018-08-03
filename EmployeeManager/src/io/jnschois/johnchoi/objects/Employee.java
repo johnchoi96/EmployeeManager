@@ -7,7 +7,7 @@ package io.jnschois.johnchoi.objects;
  * Class that defines one employee.
  * 
  * @author John Choi
- * @since 08022018
+ * @since 08032018
  */
 public class Employee implements Comparable<Employee> {
 
@@ -80,8 +80,8 @@ public class Employee implements Comparable<Employee> {
 	 * 
 	 * @return the wage
 	 */
-	public double getPayrate() {
-		return payrate;
+	public String getPayrate() {
+		return String.format("%.2f", payrate);
 	}
 	
 	/**
