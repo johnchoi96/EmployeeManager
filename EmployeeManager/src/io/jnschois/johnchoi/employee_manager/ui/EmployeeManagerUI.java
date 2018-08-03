@@ -1,4 +1,4 @@
-package io.jnschois.johnchoi.ui;
+package io.jnschois.johnchoi.employee_manager.ui;
 	
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

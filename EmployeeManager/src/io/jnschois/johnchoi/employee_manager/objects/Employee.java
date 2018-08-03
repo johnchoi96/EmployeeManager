@@ -1,7 +1,7 @@
 /**
  * 
  */
-package io.jnschois.johnchoi.objects;
+package io.jnschois.johnchoi.employee_manager.objects;
 
 /**
  * Class that defines one employee.

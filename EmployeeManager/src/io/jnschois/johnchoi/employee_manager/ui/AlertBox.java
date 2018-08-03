@@ -1,7 +1,7 @@
 /**
  * 
  */
-package io.jnschois.johnchoi.ui;
+package io.jnschois.johnchoi.employee_manager.ui;
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;

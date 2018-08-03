@@ -1,16 +1,16 @@
 /**
  * 
  */
-package io.jnschois.johnchoi.manager;
+package io.jnschois.johnchoi.employee_manager.manager;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import io.jnschois.johnchoi.file.FileIO;
-import io.jnschois.johnchoi.manager.exceptions.DuplicateEmployeeException;
-import io.jnschois.johnchoi.objects.Employee;
+import io.jnschois.johnchoi.employee_manager.file.FileIO;
+import io.jnschois.johnchoi.employee_manager.manager.exceptions.DuplicateEmployeeException;
+import io.jnschois.johnchoi.employee_manager.objects.Employee;
 
 /**
  * Main manager for this software.

@@ -1,13 +1,13 @@
 /**
  * 
  */
-package io.jnschois.johnchoi.ui;
+package io.jnschois.johnchoi.employee_manager.ui;
 
 import java.io.IOException;
 
-import io.jnschois.johnchoi.manager.EmployeeManager;
-import io.jnschois.johnchoi.manager.exceptions.DuplicateEmployeeException;
-import io.jnschois.johnchoi.objects.Employee;
+import io.jnschois.johnchoi.employee_manager.manager.EmployeeManager;
+import io.jnschois.johnchoi.employee_manager.manager.exceptions.DuplicateEmployeeException;
+import io.jnschois.johnchoi.employee_manager.objects.Employee;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,8 +26,9 @@ import javafx.stage.Stage;
  */
 public class EmployeeScreen {
 	
+	/** Tax rate based on state of North Carolina */
 	private final double TAX_RATE = 0.0765;
-	private EmployeeManager wcm;
+	private EmployeeManager em;
 	private Employee employee;
 	@FXML private TextField first;
 	@FXML private TextField middle;
@@ -45,11 +46,11 @@ public class EmployeeScreen {
 	/**
 	 * Constructs this employee screen.
 	 * 
-	 * @param wcm manager
+	 * @param em manager
 	 * @param e employee to show
 	 */
-	public void initialize(EmployeeManager wcm, Employee e) {
-		this.wcm = wcm;
+	public void initialize(EmployeeManager em, Employee e) {
+		this.em = em;
 		employee = e;
 		first.setText(e.getFirst());
 		String middleName = e.getMiddle();
@@ -91,13 +92,21 @@ public class EmployeeScreen {
 			hours.setText("0");
 			minutes.setText("0");
 			AlertBox.display("Error", "Input must be a number");
+			hours.requestFocus();
+			return;
+		}
+		if (numericHour < 0 || (numericMinute < 0 || numericMinute > 59)) {
+			hours.setText("0");
+			minutes.setText("0");
+			AlertBox.display("Error", "Invalid time");
+			hours.requestFocus();
 			return;
 		}
 		double convertedTime = calculateTime(numericHour, numericMinute);
 		double totalPaycheck = convertedTime * Double.parseDouble(payrate.getText());
 		paycheck.setText(String.format("%.2f", totalPaycheck));
 		double woTax = 0;
-		woTax = totalPaycheck - (totalPaycheck * TAX_RATE) - wcm.getFederalTaxRate() - wcm.getStateTaxRate();
+		woTax = totalPaycheck - (totalPaycheck * TAX_RATE) - em.getFederalTaxRate() - em.getStateTaxRate();
 		withoutTax.setText(String.format("%.2f", woTax));
 	}
 	
@@ -179,9 +188,9 @@ public class EmployeeScreen {
 		// if only pay rate is getting updated
 		if (initFirst.equals(first.getText()) && initMiddle.equals(middle.getText()) && initLast.equals(last.getText())) {
 			if (initPay != newPayRate) {
-				wcm.removeEmployee(employee);
+				em.removeEmployee(employee);
 				try {
-					wcm.addEmployee(newFirst, newMiddle, newLast, newPayRate);
+					em.addEmployee(newFirst, newMiddle, newLast, newPayRate);
 					hours.setText("");
 					minutes.setText("0");
 					paycheck.setText("0.00");
@@ -190,7 +199,7 @@ public class EmployeeScreen {
 					initMiddle = newMiddle;
 					initLast = newLast;
 					initPay = newPayRate;
-					wcm.saveState();
+					em.saveState();
 					return;
 				} catch (DuplicateEmployeeException e1) {
 					// should never reach here
@@ -203,7 +212,7 @@ public class EmployeeScreen {
 		
 		// check to see if editing employee exists
 		Employee check = new Employee(newFirst, newMiddle, newLast, newPayRate);
-		if (wcm.findEmployee(check) != null) {
+		if (em.findEmployee(check) != null) {
 			first.setText(initFirst);
 			middle.setText(initMiddle);
 			last.setText(initLast);
@@ -213,25 +222,25 @@ public class EmployeeScreen {
 		}
 		
 		//first, remove the current employee
-		wcm.removeEmployee(employee);
+		em.removeEmployee(employee);
 		
 		// add employee without middle name
 		if (middle.getText().equals("")) {
 			try {
-				wcm.addEmployee(first.getText(), "null", last.getText(), newPayRate);
+				em.addEmployee(first.getText(), "null", last.getText(), newPayRate);
 			} catch (DuplicateEmployeeException e1) {
 				// should never reach here
 				e1.printStackTrace();
 			}
 		} else { // add employee with middle name
 			try {
-				wcm.addEmployee(first.getText(), middle.getText(), last.getText(), newPayRate);
+				em.addEmployee(first.getText(), middle.getText(), last.getText(), newPayRate);
 			} catch (DuplicateEmployeeException e1) {
 				// should never reach here
 				e1.printStackTrace();
 			}
 		}
-		wcm.saveState();
+		em.saveState();
 		// reset init* values to new values for next run
 		initFirst = newFirst;
 		initMiddle = newMiddle;

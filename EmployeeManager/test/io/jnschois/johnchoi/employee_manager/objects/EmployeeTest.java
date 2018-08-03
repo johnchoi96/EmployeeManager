@@ -1,16 +1,16 @@
 /**
  * 
  */
-package io.jnschois.johnchoi.objects;
+package io.jnschois.johnchoi.employee_manager.objects;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import io.jnschois.johnchoi.objects.Employee;
+import io.jnschois.johnchoi.employee_manager.objects.Employee;
 
 /**
- * Tests {@link io.jnschois.johnchoi.objects.Employee}.
+ * Tests {@link io.jnschois.johnchoi.employee_manager.objects.Employee}.
  * 
  * @author John Choi
  * @since 08012018
@@ -18,7 +18,7 @@ import io.jnschois.johnchoi.objects.Employee;
 public class EmployeeTest {
 
 	/**
-	 * Test method for {@link io.jnschois.johnchoi.objects.Employee#saveInfo()}.
+	 * Test method for {@link io.jnschois.johnchoi.employee_manager.objects.Employee#saveInfo()}.
 	 */
 	@Test
 	public void testSaveInfo() {
@@ -27,7 +27,7 @@ public class EmployeeTest {
 	}
 
 	/**
-	 * Test method for {@link io.jnschois.johnchoi.objects.Employee#equals(java.lang.Object)}.
+	 * Test method for {@link io.jnschois.johnchoi.employee_manager.objects.Employee#equals(java.lang.Object)}.
 	 */
 	@Test
 	public void testEqualsObject() {
@@ -39,7 +39,7 @@ public class EmployeeTest {
 	}
 
 	/**
-	 * Test method for {@link io.jnschois.johnchoi.objects.Employee#toString()}.
+	 * Test method for {@link io.jnschois.johnchoi.employee_manager.objects.Employee#toString()}.
 	 */
 	@Test
 	public void testToString() {
@@ -48,7 +48,7 @@ public class EmployeeTest {
 	}
 
 	/**
-	 * Test method for {@link io.jnschois.johnchoi.objects.Employee#compareTo(io.jnschois.johnchoi.objects.Employee)}.
+	 * Test method for {@link io.jnschois.johnchoi.employee_manager.objects.Employee#compareTo(io.jnschois.johnchoi.employee_manager.objects.Employee)}.
 	 */
 	@Test
 	public void testCompareTo() {

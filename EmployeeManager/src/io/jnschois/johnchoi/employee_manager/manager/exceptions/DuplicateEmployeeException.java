@@ -1,7 +1,7 @@
 /**
  * 
  */
-package io.jnschois.johnchoi.manager.exceptions;
+package io.jnschois.johnchoi.employee_manager.manager.exceptions;
 
 /**
  * Exception to be thrown in case of duplicate employee.

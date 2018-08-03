@@ -1,7 +1,7 @@
 /**
  * 
  */
-package io.jnschois.johnchoi.file;
+package io.jnschois.johnchoi.employee_manager.file;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-import io.jnschois.johnchoi.objects.Employee;
-import io.jnschois.johnchoi.ui.AlertBox;
+import io.jnschois.johnchoi.employee_manager.objects.Employee;
+import io.jnschois.johnchoi.employee_manager.ui.AlertBox;
 
 /**
  * Handles the file IO at the beginning of program execution and right before program termination.

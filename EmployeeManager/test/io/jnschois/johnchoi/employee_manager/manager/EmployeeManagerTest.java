@@ -1,7 +1,7 @@
 /**
  * 
  */
-package io.jnschois.johnchoi.manager;
+package io.jnschois.johnchoi.employee_manager.manager;
 
 import static org.junit.Assert.*;
 
@@ -9,12 +9,12 @@ import java.io.FileNotFoundException;
 
 import org.junit.Test;
 
-import io.jnschois.johnchoi.manager.EmployeeManager;
-import io.jnschois.johnchoi.manager.exceptions.DuplicateEmployeeException;
-import io.jnschois.johnchoi.objects.Employee;
+import io.jnschois.johnchoi.employee_manager.manager.EmployeeManager;
+import io.jnschois.johnchoi.employee_manager.manager.exceptions.DuplicateEmployeeException;
+import io.jnschois.johnchoi.employee_manager.objects.Employee;
 
 /**
- * Tests {@link io.jnschois.johnchoi.manager.EmployeeManager}.
+ * Tests {@link io.jnschois.johnchoi.employee_manager.manager.EmployeeManager}.
  * 
  * @author John Choi
  * @since 08012018
@@ -22,7 +22,7 @@ import io.jnschois.johnchoi.objects.Employee;
 public class EmployeeManagerTest {
 
 	/**
-	 * Test method for {@link io.jnschois.johnchoi.manager.EmployeeManager#findEmployee(java.lang.String, java.lang.String)}.
+	 * Test method for {@link io.jnschois.johnchoi.employee_manager.manager.EmployeeManager#findEmployee(java.lang.String, java.lang.String)}.
 	 * @throws FileNotFoundException thrown if file is not found
 	 */
 	@Test
@@ -33,7 +33,7 @@ public class EmployeeManagerTest {
 	}
 
 	/**
-	 * Test method for {@link io.jnschois.johnchoi.manager.EmployeeManager#removeEmployee(java.lang.String, java.lang.String)}.
+	 * Test method for {@link io.jnschois.johnchoi.employee_manager.manager.EmployeeManager#removeEmployee(java.lang.String, java.lang.String)}.
 	 * @throws FileNotFoundException thrown if file cannot be found
 	 * @throws DuplicateEmployeeException thrown if adding employee is a duplicate
 	 */

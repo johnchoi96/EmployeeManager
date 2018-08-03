@@ -1,14 +1,14 @@
 /**
  * 
  */
-package io.jnschois.johnchoi.ui;
+package io.jnschois.johnchoi.employee_manager.ui;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import io.jnschois.johnchoi.manager.EmployeeManager;
-import io.jnschois.johnchoi.manager.exceptions.DuplicateEmployeeException;
-import io.jnschois.johnchoi.objects.Employee;
+import io.jnschois.johnchoi.employee_manager.manager.EmployeeManager;
+import io.jnschois.johnchoi.employee_manager.manager.exceptions.DuplicateEmployeeException;
+import io.jnschois.johnchoi.employee_manager.objects.Employee;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -31,7 +31,7 @@ import javafx.stage.Stage;
  */
 public class EmployeeManagerControllerUI {
 	
-	private EmployeeManager wcm;
+	protected EmployeeManager em;
 	@FXML private TextField first;
 	@FXML private TextField middle;
 	@FXML private TextField last;
@@ -44,19 +44,24 @@ public class EmployeeManagerControllerUI {
 	@FXML private TextField stateTax;
 	@FXML private TextField federalTax;
 	private ObservableList<Employee> employee;
+
+	private String initFTax;
+	private String initSTax;
 	
 	/**
 	 * Initializes software.
 	 */
 	public void initialize() {
+		initFTax = federalTax.getText();
+		initSTax = stateTax.getText();
 		try {
-			wcm = new EmployeeManager();
+			em = new EmployeeManager();
 			this.firstNameCol.setCellValueFactory(new PropertyValueFactory<Employee, String>("first"));
 			this.middleNameCol.setCellValueFactory(new PropertyValueFactory<Employee, String>("middle"));
 			this.lastNameCol.setCellValueFactory(new PropertyValueFactory<Employee, String>("last"));
 			this.payrateCol.setCellValueFactory(new PropertyValueFactory<Employee, Double>("payrate"));
-			this.stateTax.setText(String.format("%.2f", wcm.getStateTaxRate()));
-			this.federalTax.setText(String.format("%.2f", wcm.getFederalTaxRate()));
+			this.stateTax.setText(String.format("%.2f", em.getStateTaxRate()));
+			this.federalTax.setText(String.format("%.2f", em.getFederalTaxRate()));
 			this.employeeList.setItems(getEmployee());
 		} catch (FileNotFoundException e) {
 			AlertBox.display("Error", "Unable to open required file(s).\nProgram will now terminate.");
@@ -70,7 +75,7 @@ public class EmployeeManagerControllerUI {
 	 * @return observable list of employees
 	 */
 	private ObservableList<Employee> getEmployee() {
-		employee = FXCollections.observableArrayList(wcm.getEmployees());
+		employee = FXCollections.observableArrayList(em.getEmployees());
 		return employee;
 	}
 	
@@ -90,7 +95,7 @@ public class EmployeeManagerControllerUI {
 			return;
 		}
 		try {
-			wcm.addEmployee(first.getText().trim(), middle.getText().trim(), last.getText().trim(), Double.parseDouble(payrate.getText()));
+			em.addEmployee(first.getText().trim(), middle.getText().trim(), last.getText().trim(), Double.parseDouble(payrate.getText()));
 		} catch (NumberFormatException e1) {
 			AlertBox.display("Error", "Pay rate must be a number");
 			return;
@@ -103,7 +108,7 @@ public class EmployeeManagerControllerUI {
 		middle.setText("");
 		last.setText("");
 		payrate.setText("");
-		wcm.saveState();
+		em.saveState();
 		first.requestFocus();
 	}
 	
@@ -119,16 +124,16 @@ public class EmployeeManagerControllerUI {
 			return;
 		}
 		if (!middle.getText().equals("")) {
-			wcm.removeEmployee(first.getText().trim(), middle.getText().trim(), last.getText().trim());
+			em.removeEmployee(first.getText().trim(), middle.getText().trim(), last.getText().trim());
 		} else {
-			wcm.removeEmployee(first.getText().trim(), last.getText().trim());
+			em.removeEmployee(first.getText().trim(), last.getText().trim());
 		}
 		this.employeeList.setItems(getEmployee());
 		first.setText("");
 		middle.setText("");
 		last.setText("");
 		payrate.setText("");
-		wcm.saveState();
+		em.saveState();
 		first.requestFocus();
 	}
 	
@@ -147,7 +152,7 @@ public class EmployeeManagerControllerUI {
 		
 		EmployeeScreen controller = loader.getController();
 		try {
-			controller.initialize(wcm, employeeList.getSelectionModel().getSelectedItem());
+			controller.initialize(em, employeeList.getSelectionModel().getSelectedItem());
 		} catch (Exception exception) {
 			AlertBox.display("Error", "You must select a employee");
 			return;
@@ -166,12 +171,26 @@ public class EmployeeManagerControllerUI {
 	 */
 	@FXML
 	public void changeButton(ActionEvent e) {
+		double fedTax = 0;
+		double sTax = 0;
 		try {
-			wcm.editTaxRate(Double.parseDouble(federalTax.getText()), Double.parseDouble(stateTax.getText()));
+			fedTax = Double.parseDouble(federalTax.getText());
+			sTax = Double.parseDouble(stateTax.getText());
+			if (fedTax < 0 || sTax < 0) {
+				federalTax.setText(initFTax);
+				stateTax.setText(initSTax);
+				AlertBox.display("Error", "Invalid input");
+				return;
+			}
+			em.editTaxRate(fedTax, sTax);
 		} catch (NumberFormatException e1) {
+			federalTax.setText(initFTax);
+			stateTax.setText(initSTax);
 			AlertBox.display("Error", "Input must be a number");
 			return;
 		} catch (IOException e1) {
+			federalTax.setText(initFTax);
+			stateTax.setText(initSTax);
 			AlertBox.display("Error", "Error editing tax rate file");
 			return;
 		}
