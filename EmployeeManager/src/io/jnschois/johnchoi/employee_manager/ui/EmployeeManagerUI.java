@@ -24,7 +24,7 @@ public class EmployeeManagerUI extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(getClass().getResource("/io/jnschois/johnchoi/ui/main.fxml"));
+			loader.setLocation(getClass().getResource("/io/jnschois/johnchoi/employee_manager/ui/main.fxml"));
 			Parent root = loader.load();
 			Scene scene = new Scene(root, 594, 581);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());

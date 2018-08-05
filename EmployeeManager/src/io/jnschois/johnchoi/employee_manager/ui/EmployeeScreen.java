@@ -22,7 +22,7 @@ import javafx.stage.Stage;
  * Controller for employee screen.
  * 
  * @author John Choi
- * @since 08032018
+ * @since 08052018
  */
 public class EmployeeScreen {
 	
@@ -107,7 +107,11 @@ public class EmployeeScreen {
 		paycheck.setText(String.format("%.2f", totalPaycheck));
 		double woTax = 0;
 		woTax = totalPaycheck - (totalPaycheck * TAX_RATE) - em.getFederalTaxRate() - em.getStateTaxRate();
-		withoutTax.setText(String.format("%.2f", woTax));
+		if (woTax < 0) {
+			withoutTax.setText("0.00");
+		} else {
+			withoutTax.setText(String.format("%.2f", woTax));
+		}
 	}
 	
 	/**
@@ -130,7 +134,7 @@ public class EmployeeScreen {
 	@FXML
 	public void backToMain(ActionEvent e) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("/io/jnschois/johnchoi/ui/main.fxml"));
+		loader.setLocation(getClass().getResource("/io/jnschois/johnchoi/employee_manager/ui/main.fxml"));
 		Parent mainViewParent = loader.load();
 		Scene employeeViewScene = new Scene(mainViewParent);
 		
