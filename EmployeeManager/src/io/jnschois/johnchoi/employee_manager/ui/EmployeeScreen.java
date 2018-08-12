@@ -22,10 +22,12 @@ import javafx.stage.Stage;
  * Controller for employee screen.
  * 
  * @author John Choi
- * @since 08052018
+ * @since 08122018
  */
 public class EmployeeScreen {
 	
+	/** North Carolina's minimum wage of 2018 */
+	private static final double MIN_WAGE = 7.25;
 	/** Tax rate based on state of North Carolina */
 	private final double TAX_RATE = 0.0765;
 	private EmployeeManager em;
@@ -179,6 +181,17 @@ public class EmployeeScreen {
 		double newPayRate = 0;
 		try {
 			newPayRate = Double.parseDouble(payrate.getText());
+			if (newPayRate < 0) {
+				first.setText(initFirst);
+				middle.setText(initMiddle);
+				last.setText(initLast);
+				payrate.setText(Double.toString(initPay));
+				AlertBox.display("Error", "Pay rate cannot be less than zero");
+				return;
+			}
+			if (newPayRate < MIN_WAGE) {
+				AlertBox.display("Alert", String.format("Pay check is less than the current minimum wage, %.2f", MIN_WAGE));
+			}
 			payrate.setText(String.format("%.2f", newPayRate));
 		} catch (NumberFormatException e1) {
 			AlertBox.display("Error", "Pay rate must be a number");

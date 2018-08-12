@@ -27,10 +27,12 @@ import javafx.stage.Stage;
  * Main controller for this software GUI.
  * 
  * @author John Choi
- * @since 08032018
+ * @since 08122018
  */
 public class EmployeeManagerControllerUI {
 	
+	/** North Carolina's minimum wage of 2018 */
+	private static final double MIN_WAGE = 7.25;
 	protected EmployeeManager em;
 	@FXML private TextField first;
 	@FXML private TextField middle;
@@ -95,7 +97,17 @@ public class EmployeeManagerControllerUI {
 			return;
 		}
 		try {
-			em.addEmployee(first.getText().trim(), middle.getText().trim(), last.getText().trim(), Double.parseDouble(payrate.getText()));
+			double pay = Double.parseDouble(payrate.getText());
+			if (pay < 0) {
+				payrate.setText("");
+				AlertBox.display("Error", "Pay rate cannot be less than zero");
+				payrate.requestFocus();
+				return;
+			}
+			if (pay < MIN_WAGE) {
+				AlertBox.display("Alert", String.format("Pay check is less than the current minimum wage, %.2f", MIN_WAGE));
+			}
+			em.addEmployee(first.getText().trim(), middle.getText().trim(), last.getText().trim(), pay);
 		} catch (NumberFormatException e1) {
 			AlertBox.display("Error", "Pay rate must be a number");
 			return;
@@ -194,5 +206,11 @@ public class EmployeeManagerControllerUI {
 			AlertBox.display("Error", "Error editing tax rate file");
 			return;
 		}
+		String newF = String.format("%.2f", fedTax);
+		String newS = String.format("%.2f", sTax);
+		federalTax.setText(newF);
+		stateTax.setText(newS);
+		initFTax = newF;
+		initSTax = newS;
 	}
 }

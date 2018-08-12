@@ -40,8 +40,7 @@ public class EmployeeManager {
 	/**
 	 * Searches and returns employee with passed in name.
 	 * 
-	 * @param first name of employee
-	 * @param last name of employee
+	 * @param e employee to find
 	 * @return found employee, null if not found
 	 */
 	public Employee findEmployee(Employee e) {
@@ -79,6 +78,7 @@ public class EmployeeManager {
 	 * Searches and removes the employee from the list.
 	 * 
 	 * @param first name of employee to remove
+	 * @param middle name of employee to remove
 	 * @param last name of employee to remove
 	 */
 	public void removeEmployee(String first, String middle, String last) {
@@ -130,7 +130,8 @@ public class EmployeeManager {
 	 * Adds the employee to the data structure.
 	 * 
 	 * @param first name of the employee
-	 * @param last name
+	 * @param middle name of the employee
+	 * @param last name of the employee
 	 * @param payrate of employee
 	 * @throws DuplicateEmployeeException thrown if adding employee is duplicate
 	 */
