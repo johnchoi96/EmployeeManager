@@ -1,7 +1,0 @@
-Demo Man 7.25
-Jane Doe 10.00
-Java Fx 10.96
-John Choi 8.50
-Kildong Hong 12.00
-Mac Book 11.35
-Wolf Pack 9.45
