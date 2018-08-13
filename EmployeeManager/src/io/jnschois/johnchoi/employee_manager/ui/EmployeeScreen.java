@@ -107,8 +107,10 @@ public class EmployeeScreen {
 		double convertedTime = calculateTime(numericHour, numericMinute);
 		double totalPaycheck = convertedTime * Double.parseDouble(payrate.getText());
 		paycheck.setText(String.format("%.2f", totalPaycheck));
+		
 		double woTax = 0;
-		woTax = totalPaycheck - (totalPaycheck * TAX_RATE) - em.getFederalTaxRate() - em.getStateTaxRate();
+		double tempResult = Double.parseDouble(String.format("%.2f", totalPaycheck * TAX_RATE));
+		woTax = totalPaycheck - tempResult - em.getFederalTaxRate() - em.getStateTaxRate();
 		if (woTax < 0) {
 			withoutTax.setText("0.00");
 		} else {
