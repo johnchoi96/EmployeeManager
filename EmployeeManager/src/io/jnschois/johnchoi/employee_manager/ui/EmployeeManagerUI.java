@@ -10,8 +10,8 @@ import javafx.scene.Scene;
  * Initializes GUI for Employee Manager.
  * 
  * @author John Choi
- * @since 08022018
- * @version 2.0
+ * @since 09062018
+ * @version 2.0.2
  */
 public class EmployeeManagerUI extends Application {
 	
