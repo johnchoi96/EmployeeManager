@@ -27,7 +27,7 @@ import javafx.stage.Stage;
  * Main controller for this software GUI.
  * 
  * @author John Choi
- * @since 08122018
+ * @since 09092018
  */
 public class EmployeeManagerControllerUI {
 	
