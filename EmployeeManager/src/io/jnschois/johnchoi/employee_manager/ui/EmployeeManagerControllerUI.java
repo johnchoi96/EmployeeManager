@@ -131,22 +131,18 @@ public class EmployeeManagerControllerUI {
 	 */
 	@FXML
 	public void removeEmployeeButton(ActionEvent e) {
-		if (first.getText().equals("") || last.getText().equals("")) {
-			AlertBox.display("Error", "Please enter first and last names of deleting employee");
+		Employee removingEmployee = employeeList.getSelectionModel().getSelectedItem();
+		if (removingEmployee == null) {
+			AlertBox.display("Error", "You must select the employee you want to delete");
 			return;
 		}
-		if (!middle.getText().equals("")) {
-			em.removeEmployee(first.getText().trim(), middle.getText().trim(), last.getText().trim());
+		if (removingEmployee.getMiddle().equals("")) {
+			em.removeEmployee(removingEmployee.getFirst(), removingEmployee.getLast());
 		} else {
-			em.removeEmployee(first.getText().trim(), last.getText().trim());
+			em.removeEmployee(removingEmployee.getFirst(), removingEmployee.getMiddle(), removingEmployee.getLast());
 		}
-		this.employeeList.setItems(getEmployee());
-		first.setText("");
-		middle.setText("");
-		last.setText("");
-		payrate.setText("");
 		em.saveState();
-		first.requestFocus();
+		initialize();
 	}
 	
 	/**
