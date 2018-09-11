@@ -5,6 +5,7 @@ package io.jnschois.johnchoi.employee_manager.ui;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Optional;
 
 import io.jnschois.johnchoi.employee_manager.manager.EmployeeManager;
 import io.jnschois.johnchoi.employee_manager.manager.exceptions.DuplicateEmployeeException;
@@ -17,6 +18,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -136,13 +140,24 @@ public class EmployeeManagerControllerUI {
 			AlertBox.display("Error", "You must select the employee you want to delete");
 			return;
 		}
-		if (removingEmployee.getMiddle().equals("")) {
-			em.removeEmployee(removingEmployee.getFirst(), removingEmployee.getLast());
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Are you sure?");
+		alert.setHeaderText(null);
+		alert.setContentText("Are you sure you want to delete " + removingEmployee.getFirst() + "?");
+
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.get() == ButtonType.OK){
+			// ... user chose OK
+			if (removingEmployee.getMiddle().equals("")) {
+				em.removeEmployee(removingEmployee.getFirst(), removingEmployee.getLast());
+			} else {
+				em.removeEmployee(removingEmployee.getFirst(), removingEmployee.getMiddle(), removingEmployee.getLast());
+			}
+			em.saveState();
+			initialize();
 		} else {
-			em.removeEmployee(removingEmployee.getFirst(), removingEmployee.getMiddle(), removingEmployee.getLast());
+			return;
 		}
-		em.saveState();
-		initialize();
 	}
 	
 	/**
