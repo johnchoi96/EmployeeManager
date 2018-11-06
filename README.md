@@ -3,5 +3,6 @@
 Employee Manager designed to store employee's data (name, wage) and calculate their pay check based on pay rate and hours
 
 * Added an ability to add, remove, and edit the employee information in version 2.0.
+* Added ability to create a log file in version 2.5.
 
 # Made by John Choi
