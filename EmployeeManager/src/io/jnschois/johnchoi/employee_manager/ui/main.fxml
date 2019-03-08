@@ -44,7 +44,7 @@
       <Label layoutX="23.0" layoutY="453.0" text="Last*" />
       <Label layoutX="14.0" layoutY="488.0" text="Pay Rate" />
       <Label layoutX="362.0" layoutY="439.0" text="State w/ h:" />
-      <Label layoutX="485.0" layoutY="559.0" text="John Choi 2018" />
+      <Label layoutX="485.0" layoutY="559.0" text="John Choi 2019" />
       <Label layoutX="4.0" layoutY="559.0" text="Version 2.5" />
       <TextField fx:id="federalTax" layoutX="437.0" layoutY="392.0" prefHeight="27.0" prefWidth="114.0" />
       <TextField fx:id="stateTax" layoutX="437.0" layoutY="434.0" prefHeight="27.0" prefWidth="114.0" />
